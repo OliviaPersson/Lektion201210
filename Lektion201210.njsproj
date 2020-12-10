@@ -29,6 +29,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.js" />
+    <Content Include="calculate.html" />
     <Content Include="jsCalc.html" />
     <Content Include="package.json" />
     <Content Include="README.md" />

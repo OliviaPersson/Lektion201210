@@ -1,0 +1,25 @@
+<!DOCKTYPE html>
+<html>
+<head>
+    <title>Calculate</title>
+</head>
+
+<body>
+    <fieldset style="background-color: #FFEEEE">
+        <h2>Calculate</h2>
+        <form action="/compute">
+            <label for="X">X:</label>
+            <input type="number" id="X" name="x"><br><br>
+            <label for="Y">Y:</label>
+            <input type="number" id="Y" name="y"><br><br>
+            <select id="op" name="op">
+                <option value="plus">+ plus</option>
+                <option value="minus">- minus</option>
+                <option value="times">* times</option>
+                <option value="div">/ div</option>
+            </select><br><br>
+            <input type="submit" value="Compute it!">
+        </form>
+    </fieldset>
+</body>
+</html>
