@@ -31,25 +31,25 @@ http.createServer(function (req, res) {
         var txt = "";
         if (op == "plus") {
             opIndex = 0;
-            txt = parseInt(q.x) + parseInt(q.y);
+            txt = q.x*1 + q.y*1;
         }
         else if (op == "minus") {
             opIndex = 1;
-            txt = parseInt(q.x) - parseInt(q.y);
+            txt = q.x - q.y;
         }
         else if (op == "times") {
             opIndex = 2;
-            txt = parseInt(q.x) * parseInt(q.y);
+            txt = q.x * q.y;
         }
         else if (op == "div") {
             opIndex = 3;
-            txt = parseInt(q.x) / parseInt(q.y);
+            txt = q.x / q.y;
         }
         var expr = q.x + " " + operations[opIndex] + " " + q.y + " = " + txt;
         res.write("             <p>" + "x" + " = " + q.x + "</p>\n")
         res.write("             <p>" + "y" + " = " + q.y + "</p>\n")
         res.write("             <p>" + "op" + " = " + op + "</p>\n")
-        res.write("             <p>" + expr.toString()+ "</p>\n")
+        res.write("             <p>" + expr + "</p>\n")
         res.write("         </body>\n");
         res.write("     </html>");
         res.end();
