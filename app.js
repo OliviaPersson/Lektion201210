@@ -1,11 +1,10 @@
-/* Includes: */
 var http = require('http');
 var fs = require('fs');
 var url = require('url');
 
 http.createServer(function (req, res) {
     var pathname = url.parse(req.url, true).pathname
-
+    //Shows calculator
     if (req.url == "/calc") {
 
         fs.readFile('jscalc.html', function (err, data) {
@@ -14,8 +13,17 @@ http.createServer(function (req, res) {
             return res.end();
         });
     }
+    //Calculate with input parameters
     else if (pathname == "/compute") {
         res.writeHead(200, { 'Content-Type': 'text/html' });
+
+        res.write("<!DOCKTYPE html >\n");
+        res.write("     <html>\n");
+        res.write("         <head>\n");
+        res.write("             <title>" + "Calculation" + "</title>\n")
+        res.write("         </head>\n");
+        res.write("         <body>\n");
+        res.write("             <h2>" + "Compute page" + "</h2>\n")
         var q = url.parse(req.url, true).query;
         var op = q.op;
         var operations = ["+", "-", "*", "/"];
@@ -33,13 +41,20 @@ http.createServer(function (req, res) {
             opIndex = 2;
             txt = parseInt(q.x) * parseInt(q.y);
         }
-        else if (op == "delat") {
+        else if (op == "div") {
             opIndex = 3;
             txt = parseInt(q.x) / parseInt(q.y);
         }
         var expr = q.x + " " + operations[opIndex] + " " + q.y + " = " + txt;
-        return res.end(expr.toString());
+        res.write("             <p>" + "x" + " = " + q.x + "</p>\n")
+        res.write("             <p>" + "y" + " = " + q.y + "</p>\n")
+        res.write("             <p>" + "op" + " = " + op + "</p>\n")
+        res.write("             <p>" + expr.toString()+ "</p>\n")
+        res.write("         </body>\n");
+        res.write("     </html>");
+        res.end();
     }
+    //Loading the form
     else if (req.url == "/") {
         fs.readFile('calculate.html', function (err, data) {
             res.writeHead(200, { 'Content-Type': 'text/html' });
